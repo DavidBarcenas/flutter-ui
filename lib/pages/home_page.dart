@@ -6,8 +6,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home'), centerTitle: true,),
-      body: Center(child: SvgPicture.asset('assets/icons/menu.svg', width: 90,))
+      body: SafeArea(
+        child: Center(
+          child: SvgPicture.asset('assets/icons/menu.svg', width: 90,)
+        )
+      )
     );
   }
 }
