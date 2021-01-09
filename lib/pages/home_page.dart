@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutterui/widgets/avatar.dart';
 import 'package:flutterui/widgets/bottom_menu.dart';
 
 
@@ -9,7 +9,16 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: SvgPicture.asset('assets/icons/home.svg', width: 90,)
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Avatar(),
+              SizedBox(height: 20.0,),
+              Text('Bienvenido'),
+              Text('David Bárcenas', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),)
+            ]
+
+          ),
         ),
         bottomNavigationBar: BottomMenu(items: [
           BottomMenuItem(assetIcon: 'assets/icons/home.svg', text: 'Inicio'),
