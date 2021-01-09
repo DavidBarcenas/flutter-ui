@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BottomMenu extends StatelessWidget {
   final List<BottomMenuItem> items;
 
-  const BottomMenu({@required this.items}): assert(items != null && items.length > 1);
+  const BottomMenu({@required this.items})
+      : assert(items != null && items.length > 1);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +15,8 @@ class BottomMenu extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(items.length, (index) => items[index])
-        ),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(items.length, (index) => items[index])),
       ]),
     );
   }
@@ -29,15 +30,23 @@ class BottomMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SvgPicture.asset(
-          assetIcon,
-          width: 30,
-        ),
-        SizedBox(height: 3.0,),
-        Text(text, style: TextStyle(fontSize: 12.0),)
-      ],
-    );
+    return CupertinoButton(
+      onPressed: (){},
+      padding: EdgeInsets.all(0),
+      child: Column(
+        children: [
+          SvgPicture.asset(
+            assetIcon,
+            width: 30,
+          ),
+          SizedBox(
+            height: 3.0,
+          ),
+          Text(
+            text,
+            style: TextStyle(fontSize: 12.0, color: Colors.black),
+          )
+        ],
+    ));
   }
 }

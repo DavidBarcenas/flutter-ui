@@ -15,7 +15,7 @@ class Avatar extends StatelessWidget {
             right: 0.0,
             child: FloatingActionButton(
               child: Icon(Icons.edit, color: Colors.black87,), 
-              backgroundColor: Color(0xffcccccc),
+              backgroundColor: Color(0xffeeeeee),
               onPressed: (){},
               )
             )
