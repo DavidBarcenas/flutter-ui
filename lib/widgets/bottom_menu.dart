@@ -9,7 +9,8 @@ class BottomMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,7 +35,8 @@ class BottomMenuItem extends StatelessWidget {
           assetIcon,
           width: 30,
         ),
-        Text(text)
+        SizedBox(height: 3.0,),
+        Text(text, style: TextStyle(fontSize: 12.0),)
       ],
     );
   }

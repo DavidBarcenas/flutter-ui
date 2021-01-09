@@ -9,12 +9,13 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: SvgPicture.asset('assets/icons/menu.svg', width: 90,)
+          child: SvgPicture.asset('assets/icons/home.svg', width: 90,)
         ),
         bottomNavigationBar: BottomMenu(items: [
-          BottomMenuItem(assetIcon: 'assets/icons/menu.svg', text: 'Inicio'),
-          BottomMenuItem(assetIcon: 'assets/icons/menu.svg', text: 'Inicio'),
-          BottomMenuItem(assetIcon: 'assets/icons/menu.svg', text: 'Inicio'),
+          BottomMenuItem(assetIcon: 'assets/icons/home.svg', text: 'Inicio'),
+          BottomMenuItem(assetIcon: 'assets/icons/back-arrow.svg', text: 'Historial'),
+          BottomMenuItem(assetIcon: 'assets/icons/copy.svg', text: 'Ofertas'),
+          BottomMenuItem(assetIcon: 'assets/icons/menu.svg', text: 'Más'),
         ],)
       ),
     );
