@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class Chronometer extends StatefulWidget {
   ChronometerState createState() => ChronometerState();
 }
 
-class ChronometerState extends State<Chronometer> {
+class ChronometerState extends State<Chronometer> with AfterLayoutMixin{
   double _time = 0;
   Timer _timer;
 
@@ -23,13 +24,26 @@ class ChronometerState extends State<Chronometer> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+   @override
+  void afterFirstLayout(BuildContext context) {
+    showDialog(context: context, builder: (BuildContext context) => AlertDialog(
+      title: Text('Este es un dialogo'),
+    ));
+
+  }
+
+  @override
   void dispose() {
     _timer.cancel();
     super.dispose();
   }
 
   void _start() {
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer _) {
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer _) { 
       setState(() {
         _time = _time + 1;
       });
@@ -74,4 +88,6 @@ class ChronometerState extends State<Chronometer> {
       ),
     );
   }
+
+ 
 }
