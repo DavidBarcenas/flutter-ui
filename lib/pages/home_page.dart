@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterui/pages/chat_page.dart';
 import 'package:flutterui/widgets/avatar.dart';
 import 'package:flutterui/widgets/bottom_menu.dart';
 import 'package:flutterui/widgets/chronometer.dart';
@@ -19,7 +20,15 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           body: Column(
             children: [
-              MyAppBar(),
+              MyAppBar(
+                leftIcon: 'https://www.flaticon.com/svg/static/icons/svg/685/685662.svg',
+                rightIcon: 'https://www.flaticon.com/svg/static/icons/svg/1370/1370907.svg',
+                onLeftClick: (){},
+                onRightClick: () {
+                  final route = MaterialPageRoute(builder: (_) => ChatPage());
+                  Navigator.push(context, route);
+                },
+              ),
               Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.max, 
@@ -39,7 +48,10 @@ class _HomePageState extends State<HomePage> {
                   _isEnable ? Chronometer(
                     initTime: 90,
                   ) : Container(),
-                  CupertinoButton(child: Text('Enable: $_isEnable'), onPressed: () => setState(() => _isEnable = !_isEnable),)
+                  CupertinoButton(child: Text('Enable: $_isEnable'), onPressed: () {
+                    final route = MaterialPageRoute(builder: (_) => ChatPage());
+                    Navigator.push(context, route);
+                  })
                 ]),
               ),
             ],
