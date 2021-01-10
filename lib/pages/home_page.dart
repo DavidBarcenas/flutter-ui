@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterui/widgets/avatar.dart';
 import 'package:flutterui/widgets/bottom_menu.dart';
 import 'package:flutterui/widgets/chronometer.dart';
+import 'package:flutterui/widgets/my_appbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,23 +17,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Center(
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Avatar(),
-              SizedBox(
-                height: 20.0,
+          body: Column(
+            children: [
+              MyAppBar(),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max, 
+                  mainAxisAlignment: 
+                  MainAxisAlignment.center, children: 
+                  [
+                  Avatar(),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text('Bienvenido'),
+                  Text(
+                    'David Bárcenas',
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                  
+                  _isEnable ? Chronometer(
+                    initTime: 90,
+                  ) : Container(),
+                  CupertinoButton(child: Text('Enable: $_isEnable'), onPressed: () => setState(() => _isEnable = !_isEnable),)
+                ]),
               ),
-              Text('Bienvenido'),
-              Text(
-                'David Bárcenas',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              
-              _isEnable ? Chronometer(
-                initTime: 90,
-              ) : Container(),
-              CupertinoButton(child: Text('Enable: $_isEnable'), onPressed: () => setState(() => _isEnable = !_isEnable),)
-            ]),
+            ],
           ),
           bottomNavigationBar: BottomMenu(
             items: [
