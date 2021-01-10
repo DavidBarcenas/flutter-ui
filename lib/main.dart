@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(),
       routes: {
-        'home': (_) => HomePage(),
+        ImagePage.routeName: (_) => HomePage(),
         'images': (_) => ImagePage()
       },
     );

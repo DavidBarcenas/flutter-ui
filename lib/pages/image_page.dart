@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutterui/widgets/my_appbar.dart';
 
+class ImagePageArgs {
+  final String username;
+  final bool isActive;
+
+  ImagePageArgs({@required this.username, @required this.isActive});
+}
+
 class ImagePage extends StatefulWidget {
+  static final routeName = 'image';
   @override
   _ImagePageState createState() => _ImagePageState();
 }
@@ -9,6 +17,7 @@ class ImagePage extends StatefulWidget {
 class _ImagePageState extends State<ImagePage> {
   @override
   Widget build(BuildContext context) {
+    final ImagePageArgs args = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -25,7 +34,7 @@ class _ImagePageState extends State<ImagePage> {
                 onRightClick: () {},
               ),
               Center(
-                child: Text('ImagePage'),
+                child: Text(args.username),
               )
             ],
           ),

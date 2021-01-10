@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterui/pages/chat_page.dart';
+import 'package:flutterui/pages/image_page.dart';
 import 'package:flutterui/widgets/avatar.dart';
 import 'package:flutterui/widgets/bottom_menu.dart';
 import 'package:flutterui/widgets/chronometer.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
                 rightIcon:
                     'https://www.flaticon.com/svg/static/icons/svg/1370/1370907.svg',
                 onLeftClick: () {
-                  Navigator.pushNamed(context, 'images');
+                  Navigator.pushNamed(context, 'images', arguments: ImagePageArgs(username: 'Images', isActive: true));
                 },
                 onRightClick: () {
                   final route = MaterialPageRoute(
