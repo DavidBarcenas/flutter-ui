@@ -21,38 +21,51 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: [
               MyAppBar(
-                leftIcon: 'https://www.flaticon.com/svg/static/icons/svg/685/685662.svg',
-                rightIcon: 'https://www.flaticon.com/svg/static/icons/svg/1370/1370907.svg',
-                onLeftClick: (){},
+                leftIcon:
+                    'https://www.flaticon.com/svg/static/icons/svg/685/685662.svg',
+                rightIcon:
+                    'https://www.flaticon.com/svg/static/icons/svg/1370/1370907.svg',
+                onLeftClick: () {
+                  Navigator.pushNamed(context, 'images');
+                },
                 onRightClick: () {
-                  final route = MaterialPageRoute(builder: (_) => ChatPage());
+                  final route = MaterialPageRoute(
+                      builder: (_) => ChatPage(
+                            name: 'Daveepro',
+                          ));
                   Navigator.push(context, route);
                 },
               ),
               Expanded(
                 child: Column(
-                  mainAxisSize: MainAxisSize.max, 
-                  mainAxisAlignment: 
-                  MainAxisAlignment.center, children: 
-                  [
-                  Avatar(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text('Bienvenido'),
-                  Text(
-                    'David Bárcenas',
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                  ),
-                  
-                  _isEnable ? Chronometer(
-                    initTime: 90,
-                  ) : Container(),
-                  CupertinoButton(child: Text('Enable: $_isEnable'), onPressed: () {
-                    final route = MaterialPageRoute(builder: (_) => ChatPage());
-                    Navigator.push(context, route);
-                  })
-                ]),
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Avatar(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Text('Bienvenido'),
+                      Text(
+                        'David Bárcenas',
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                      _isEnable
+                          ? Chronometer(
+                              initTime: 90,
+                            )
+                          : Container(),
+                      CupertinoButton(
+                          child: Text('Enable: $_isEnable'),
+                          onPressed: () {
+                            final route = MaterialPageRoute(
+                                builder: (_) => ChatPage(
+                                      name: 'Daveepro',
+                                    ));
+                            Navigator.push(context, route);
+                          })
+                    ]),
               ),
             ],
           ),

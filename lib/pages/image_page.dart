@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutterui/widgets/my_appbar.dart';
 
-class ChatPage extends StatefulWidget {
-  final String name;
-
-  const ChatPage({Key key, @required this.name}) : assert(name != null), super(key: key);
-
+class ImagePage extends StatefulWidget {
   @override
-  _ChatPageState createState() => _ChatPageState();
+  _ImagePageState createState() => _ImagePageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ImagePageState extends State<ImagePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +25,7 @@ class _ChatPageState extends State<ChatPage> {
                 onRightClick: () {},
               ),
               Center(
-                child: Text(widget.name),
+                child: Text('ImagePage'),
               )
             ],
           ),
