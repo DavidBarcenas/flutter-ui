@@ -12,7 +12,7 @@ class BottomMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      padding: EdgeInsets.symmetric(vertical: 10.0),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,23 +30,25 @@ class BottomMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
-      onPressed: (){},
-      padding: EdgeInsets.all(0),
-      child: Column(
-        children: [
-          SvgPicture.asset(
-            assetIcon,
-            width: 30,
-          ),
-          SizedBox(
-            height: 3.0,
-          ),
-          Text(
-            text,
-            style: TextStyle(fontSize: 12.0, color: Colors.black),
-          )
-        ],
-    ));
+    return Expanded(
+      child: CupertinoButton(
+        onPressed: (){},
+        padding: EdgeInsets.all(0),
+        child: Column(
+          children: [
+            SvgPicture.asset(
+              assetIcon,
+              width: 30,
+            ),
+            SizedBox(
+              height: 3.0,
+            ),
+            Text(
+              text,
+              style: TextStyle(fontSize: 12.0, color: Colors.black),
+            )
+          ],
+      )),
+    );
   }
 }
