@@ -22,7 +22,7 @@ class _ChatPageState extends State<ChatPage> {
                 leftIcon:
                     'https://www.flaticon.com/svg/static/icons/svg/2223/2223615.svg',
                 rightIcon:
-                    'https://www.flaticon.com/svg/static/icons/svg/1370/1370907.svg',
+                    'https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg',
                 onLeftClick: () {
                   Navigator.pop(context);
                 },

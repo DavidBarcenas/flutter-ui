@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterui/pages/home_page.dart';
 import 'package:flutterui/pages/image_page.dart';
+import 'package:flutterui/pages/post_page.dart';
 import 'package:flutterui/pages/splash_page.dart';
 
 void main() {
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(),
       routes: {
-        ImagePage.routeName: (_) => HomePage(),
+        HomePage.routeName: (_) => HomePage(),
+        PostPage.routeName: (_) => PostPage(),
         'images': (_) => ImagePage()
       },
     );

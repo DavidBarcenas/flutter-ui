@@ -42,8 +42,8 @@ class MyAppBar extends StatelessWidget {
                     top: 0,
                     right: 0,
                     child: Container(
-                      height: 15,
-                      width: 15,
+                      height: 12,
+                      width: 12,
                       decoration: BoxDecoration(
                           color: Colors.red, shape: BoxShape.circle),
                     ))
