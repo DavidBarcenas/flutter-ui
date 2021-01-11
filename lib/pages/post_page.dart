@@ -3,16 +3,17 @@ import 'package:flutterui/utils/fake_data.dart';
 import 'package:flutterui/widgets/my_appbar.dart';
 
 import 'chat_page.dart';
-import 'image_page.dart';
 
 class PostPage extends StatefulWidget {
   static final routeName = 'posts';
-  
+
   @override
   _PostPageState createState() => _PostPageState();
 }
 
 class _PostPageState extends State<PostPage> {
+  List<String> _data = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +29,10 @@ class _PostPageState extends State<PostPage> {
                 rightIcon:
                     'https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg',
                 onLeftClick: () {
-                  Navigator.pushNamed(context, 'images',
-                      arguments:
-                          ImagePageArgs(username: 'Images', isActive: true));
+                  setState(() {
+                    // _data.add('Item ${data.length}');
+                    _data.insert(_data.length, 'Item ${data.length}');
+                  });
                 },
                 onRightClick: () {
                   final route = MaterialPageRoute(
@@ -40,9 +42,17 @@ class _PostPageState extends State<PostPage> {
                   Navigator.push(context, route);
                 },
               ),
-              Expanded(child: ListView.builder(
-                itemBuilder: (_, i) => ListTile(title: Text(data[i])),
-                itemCount: data.length,
+              Expanded(
+                  child: ListView.builder(
+                itemBuilder: (_, i) => ListTile(
+                  title: Text(_data[i]),
+                  onLongPress: () {
+                    setState(() {
+                      _data.removeAt(i);
+                    });
+                  },
+                ),
+                itemCount: _data.length,
               ))
             ],
           ),
