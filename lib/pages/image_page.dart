@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutterui/widgets/my_appbar.dart';
 
 class ImagePageArgs {
@@ -17,7 +19,6 @@ class ImagePage extends StatefulWidget {
 class _ImagePageState extends State<ImagePage> {
   @override
   Widget build(BuildContext context) {
-    final ImagePageArgs args = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -33,8 +34,19 @@ class _ImagePageState extends State<ImagePage> {
                 },
                 onRightClick: () {},
               ),
-              Center(
-                child: Text(args.username),
+              Expanded(
+                child: Center(
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: CachedNetworkImage(
+                      imageUrl: 'https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', 
+                      placeholder: (_,__) => Center(child: CupertinoActivityIndicator(
+                radius: 15,
+              )), 
+                      fit: BoxFit.cover,) 
+                    ),
+                ),
               )
             ],
           ),
