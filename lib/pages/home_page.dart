@@ -15,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,7 +29,9 @@ class _HomePageState extends State<HomePage> {
                 rightIcon:
                     'https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg',
                 onLeftClick: () {
-                  Navigator.pushNamed(context, 'images', arguments: ImagePageArgs(username: 'Images', isActive: true));
+                  Navigator.pushNamed(context, 'images',
+                      arguments:
+                          ImagePageArgs(username: 'Images', isActive: true));
                 },
                 onRightClick: () {
                   final route = MaterialPageRoute(
@@ -55,13 +59,18 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      MyBtn(label: 'Aceptar', onPressed: () => Navigator.pushNamed(context, PostPage.routeName),),
-                     
+                      MyBtn(
+                        label: 'Aceptar',
+                        onPressed: () =>
+                            Navigator.pushNamed(context, PostPage.routeName),
+                      ),
                     ]),
               ),
             ],
           ),
           bottomNavigationBar: BottomMenu(
+            currentPage: _currentPage,
+            onChanged: (int page) => setState(() => _currentPage = page),
             items: [
               BottomMenuItem(
                   assetIcon: 'assets/icons/home.svg', text: 'Inicio'),
