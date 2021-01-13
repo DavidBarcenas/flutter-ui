@@ -7,6 +7,7 @@ import 'package:flutterui/pages/tabs/home_tab.dart';
 import 'package:flutterui/pages/tabs/more__tab.dart';
 import 'package:flutterui/pages/tabs/offers_tab.dart';
 import 'package:flutterui/widgets/bottom_menu.dart';
+import 'package:flutterui/widgets/custom_pageview.dart';
 import 'package:flutterui/widgets/my_appbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,12 +21,25 @@ class _HomePageState extends State<HomePage> {
 
   final _menu = [
     BottomMenuItem(
-        assetIcon: 'assets/icons/home.svg', text: 'Inicio', content: HomeTab(),),
+      assetIcon: 'assets/icons/home.svg',
+      text: 'Inicio',
+      content: HomeTab(),
+    ),
     BottomMenuItem(
-        assetIcon: 'assets/icons/back-arrow.svg', text: 'Historial', content: HistoryTab(),),
+      assetIcon: 'assets/icons/back-arrow.svg',
+      text: 'Historial',
+      content: HistoryTab(),
+    ),
     BottomMenuItem(
-        assetIcon: 'assets/icons/copy.svg', text: 'Ofertas', content: OffersTab(),),
-    BottomMenuItem(assetIcon: 'assets/icons/menu.svg', text: 'Más', content: MoreTab(),),
+      assetIcon: 'assets/icons/copy.svg',
+      text: 'Ofertas',
+      content: OffersTab(),
+    ),
+    BottomMenuItem(
+      assetIcon: 'assets/icons/menu.svg',
+      text: 'Más',
+      content: MoreTab(),
+    ),
   ];
 
   @override
@@ -58,19 +72,18 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               Expanded(
-                child: IndexedStack(
-                  alignment: Alignment.center,
+                child: CustomPageView(
                   children: _menu.map((item) => item.content).toList(),
-                  index: _currentPage,
-                )
-              ),
+                  currentPage: _currentPage,
+              )),
             ],
           ),
           bottomNavigationBar: BottomMenu(
-            currentPage: _currentPage,
-            onChanged: (int page) => setState(() => _currentPage = page),
-            items: _menu
-          )),
+              currentPage: _currentPage,
+              onChanged: (int page) {
+                setState(() => _currentPage = page);
+              },
+              items: _menu)),
     );
   }
 }
