@@ -18,8 +18,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
 
-  PageController _pageController;
-
   final _menu = [
     BottomMenuItem(
         assetIcon: 'assets/icons/home.svg', text: 'Inicio', content: HomeTab(),),
@@ -33,13 +31,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 0); 
-  }
-
-  @override
-  void dispose() {
-    _pageController?.dispose();
-    super.dispose();
   }
 
   @override
@@ -67,20 +58,17 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               Expanded(
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemBuilder: (context, idx) => _menu[idx].content,
-                  itemCount: 4,
-                  onPageChanged: (int page) {
-                    setState(() => _currentPage = page);
-                  },
+                child: IndexedStack(
+                  alignment: Alignment.center,
+                  children: _menu.map((item) => item.content).toList(),
+                  index: _currentPage,
                 )
               ),
             ],
           ),
           bottomNavigationBar: BottomMenu(
             currentPage: _currentPage,
-            onChanged: (int page) => _pageController.jumpToPage(page),
+            onChanged: (int page) => setState(() => _currentPage = page),
             items: _menu
           )),
     );
