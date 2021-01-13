@@ -34,13 +34,19 @@ class _ImagePageState extends State<ImagePage> {
                 onRightClick: () {},
               ),
               Expanded(
-                child: Center(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Image.asset('assets/cover.jpeg', fit: BoxFit.cover,)
-                    ),
-                ),
+                child: GridView.builder(
+                  padding: EdgeInsets.all(10.0),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0
+                  ),
+                  itemBuilder: (context, index) => Container(
+                    color: Colors.deepPurple,
+                    alignment: Alignment.center,
+                    child: Text('${index + 1}'),
+                  ), itemCount: 50,
+                )
               )
             ],
           ),
