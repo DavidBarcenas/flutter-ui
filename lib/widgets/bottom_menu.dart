@@ -23,11 +23,13 @@ class BottomMenu extends StatelessWidget {
             children: List.generate(items.length, (index) {
               isActive = index == currentPage;
               return BottomMenuItem(
-                  assetIcon: items[index].assetIcon,
-                  text: items[index].text,
-                  active: isActive,
-                  index: index,
-                  onChanged: onChanged,);
+                assetIcon: items[index].assetIcon,
+                text: items[index].text,
+                active: isActive,
+                index: index,
+                onChanged: onChanged,
+                content: items[index].content,
+              );
             })),
       ]),
     );
@@ -40,13 +42,16 @@ class BottomMenuItem extends StatelessWidget {
   final bool active;
   final int index;
   final void Function(int) onChanged;
+  final Widget content;
 
   const BottomMenuItem(
       {@required this.assetIcon,
+      @required this.content,
       @required this.text,
       this.active,
       this.index,
-      this.onChanged});
+      this.onChanged,
+      });
 
   @override
   Widget build(BuildContext context) {
