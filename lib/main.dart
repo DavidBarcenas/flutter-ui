@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterui/pages/home_page.dart';
 import 'package:flutterui/pages/image_page.dart';
+import 'package:flutterui/pages/login_page.dart';
 import 'package:flutterui/pages/post_page.dart';
 import 'package:flutterui/pages/splash_page.dart';
 
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (_) => HomePage(),
         PostPage.routeName: (_) => PostPage(),
-        'images': (_) => ImagePage()
+        'images': (_) => ImagePage(),
+        'login': (_) => LoginPage(),
       },
     );
   }

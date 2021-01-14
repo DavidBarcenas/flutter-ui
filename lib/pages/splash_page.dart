@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> with AfterLayoutMixin {
   }
   @override
   void afterFirstLayout(BuildContext context) {
-    Navigator.pushReplacementNamed(context, 'home');
+    Navigator.pushReplacementNamed(context, 'login');
   }
 
   @override
