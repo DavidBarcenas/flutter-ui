@@ -8,8 +8,12 @@ class HistoryTab extends StatefulWidget {
 class _HistoryTabState extends State<HistoryTab> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('History'),
+    return LayoutBuilder(
+      builder: (context, constrains) => Container(
+        color: Colors.blue,
+        height: constrains.maxHeight,
+        width: constrains.maxWidth,
+      )
     );
   }
 }
