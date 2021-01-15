@@ -7,6 +7,40 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  FocusNode _focusNodePsswd = FocusNode();
+  String _email = '', _psswd = '', _errorEmail, _errorPsswd;
+
+  @override
+  void dispose() {
+    _focusNodePsswd.dispose();
+    super.dispose();
+  }
+
+  String _validateEmail() {
+    if (_email.isNotEmpty && _email.contains('@')) {
+      return null;
+    }
+    return 'Invalid email';
+  }
+
+  String _validatePsswd() {
+    if (_psswd.isNotEmpty && _psswd.length > 4) {
+      return null;
+    }
+    return 'Invalid password';
+  }
+
+  _submit() {
+    _errorEmail = _validateEmail();
+    _errorPsswd = _validatePsswd();
+
+    if (_errorEmail != null || _errorPsswd != null) {
+      setState(() {});
+      return;
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,13 +65,38 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       TextField(
-                        decoration: InputDecoration(hintText: 'Email'),
+                        decoration: InputDecoration(
+                            hintText: 'daveepro@outlook.com',
+                            labelText: 'Email',
+                            errorText: _errorEmail),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: (text) {
+                          setState(() {
+                            _email = text;
+                          });
+                        },
+                        onSubmitted: (String text) {
+                          _focusNodePsswd.nextFocus();
+                        },
                       ),
                       SizedBox(
                         height: 20.0,
                       ),
                       TextField(
-                        decoration: InputDecoration(hintText: 'Password'),
+                        obscureText: true,
+                        focusNode: _focusNodePsswd,
+                        textInputAction: TextInputAction.send,
+                        decoration: InputDecoration(
+                            hintText: '*******',
+                            labelText: 'Contraseña',
+                            errorText: _errorPsswd),
+                        onSubmitted: _submit(),
+                        onChanged: (text) {
+                          setState(() {
+                            _psswd = text;
+                          });
+                        },
                       ),
                       SizedBox(
                         height: 40.0,
@@ -45,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                       MyBtn(
                         label: 'Ingresar',
                         fullWidth: true,
-                        onPressed: () {},
+                        onPressed: _submit,
                       )
                     ],
                   )),
