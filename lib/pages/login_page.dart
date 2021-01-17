@@ -10,35 +10,35 @@ class _LoginPageState extends State<LoginPage> {
   FocusNode _focusNodePsswd = FocusNode();
   String _email = '', _psswd = '', _errorEmail, _errorPsswd;
 
+  GlobalKey<FormState> _formKey = GlobalKey();
+
   @override
   void dispose() {
     _focusNodePsswd.dispose();
     super.dispose();
   }
 
-  String _validateEmail() {
-    if (_email.isNotEmpty && _email.contains('@')) {
+  String _validateEmail(String email) {
+    if (email.isNotEmpty && email.contains('@')) {
+      _email = email;
       return null;
     }
     return 'Invalid email';
   }
 
-  String _validatePsswd() {
-    if (_psswd.isNotEmpty && _psswd.length > 4) {
+  String _validatePsswd(String psswd) {
+    if (psswd.isNotEmpty && psswd.length > 4) {
+      _psswd = psswd;
       return null;
     }
     return 'Invalid password';
   }
 
   _submit() {
-    _errorEmail = _validateEmail();
-    _errorPsswd = _validatePsswd();
+   final bool isValid =  _formKey.currentState.validate();
+   if(isValid) {
 
-    if (_errorEmail != null || _errorPsswd != null) {
-      setState(() {});
-      return;
-    }
-    setState(() {});
+   }
   }
 
   @override
@@ -62,51 +62,42 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: 300.0),
-                  child: Column(
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                            hintText: 'daveepro@outlook.com',
-                            labelText: 'Email',
-                            errorText: _errorEmail),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        onChanged: (text) {
-                          setState(() {
-                            _email = text;
-                          });
-                        },
-                        onSubmitted: (String text) {
-                          _focusNodePsswd.nextFocus();
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextField(
-                        obscureText: true,
-                        focusNode: _focusNodePsswd,
-                        textInputAction: TextInputAction.send,
-                        decoration: InputDecoration(
-                            hintText: '*******',
-                            labelText: 'Contraseña',
-                            errorText: _errorPsswd),
-                        onSubmitted: _submit(),
-                        onChanged: (text) {
-                          setState(() {
-                            _psswd = text;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: 40.0,
-                      ),
-                      MyBtn(
-                        label: 'Ingresar',
-                        fullWidth: true,
-                        onPressed: _submit,
-                      )
-                    ],
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                              hintText: 'daveepro@outlook.com',
+                              labelText: 'Email'),
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: _validateEmail,
+                          onFieldSubmitted: (String text) {
+                            _focusNodePsswd.nextFocus();
+                          },
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          focusNode: _focusNodePsswd,
+                          textInputAction: TextInputAction.send,
+                          decoration: InputDecoration(
+                              hintText: '*******', labelText: 'Contraseña'),
+                          validator: _validatePsswd,
+                        ),
+                        SizedBox(
+                          height: 40.0,
+                        ),
+                        MyBtn(
+                          label: 'Ingresar',
+                          fullWidth: true,
+                          onPressed: _submit,
+                        )
+                      ],
+                    ),
                   )),
             ],
           ),
