@@ -4,8 +4,6 @@ import 'package:flutterui/widgets/avatar.dart';
 import 'package:flutterui/widgets/my_btn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../post_page.dart';
-
 class MoreTab extends StatefulWidget {
   @override
   _MoreTabState createState() => _MoreTabState();
@@ -16,6 +14,28 @@ class _MoreTabState extends State<MoreTab> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
     Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
+  }
+
+  _confirm() {
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text('Flutter UI'),
+            content: Text('¿Seguro que desea salir?'),
+            actions: [
+              FlatButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Cancelar')),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _logOut();
+                  },
+                  child: Text('Aceptar'))
+            ],
+          );
+        });
   }
 
   @override
@@ -38,8 +58,8 @@ class _MoreTabState extends State<MoreTab> {
             height: 20.0,
           ),
           MyBtn(
-            label: 'Aceptar',
-            onPressed: () => Navigator.pushNamed(context, PostPage.routeName),
+            label: 'Cerrar sesión',
+            onPressed: _confirm,
           ),
         ]));
   }
